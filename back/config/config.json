@@ -1,0 +1,1 @@
+{"db":{"mongo":{"port":27017,"host":"mongodb","dbname":"smonkeyfy"}},"server":{"port":3800}}

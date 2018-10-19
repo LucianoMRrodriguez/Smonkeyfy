@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  smonkeyfy-front:
+    image: vue:3
+    build:
+      context: ./docker/
+      dockerfile: Dockerfile-vue3
+    container_name: smonkeyfy-front
+    tty: true
+    volumes:
+      - ./front:/smonkeyfy/
+      - ~/.ssh/:/root/.ssh/
+      - /etc/timezone:/etc/timezone
+    ports:
+      - 8080:8080
+    networks:
+      - smonkeyfy-net
+    working_dir: /smonkeyfy/
+    command: npm start
+
+  smonkeyfy-back:
+    image: node:latest
+    container_name: smonkeyfy-back
+    tty: true
+    volumes:
+      - ./back:/smonkeyfy/
+      - ~/.ssh/:/root/.ssh/
+      - /etc/timezone:/etc/timezone
+    depends_on:
+      - mongodb
+    links:
+      - mongodb:mongodb
+    ports:
+      - 3800:3800
+    networks:
+      - smonkeyfy-net
+    working_dir: /smonkeyfy/
+    command: npm start
+
+  mongodb:
+    image: mongo:latest
+    container_name: smonkeyfy-db
+    tty: true
+    ports:
+      - 27017:27017
+    networks:
+      - smonkeyfy-net
+
+networks:
+  smonkeyfy-net:
+    driver: bridge

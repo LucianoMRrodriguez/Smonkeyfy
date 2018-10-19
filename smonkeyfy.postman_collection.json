@@ -1,0 +1,134 @@
+{
+	"variables": [],
+	"info": {
+		"name": "smonkeyfy",
+		"_postman_id": "b3fd87fc-51ae-1260-7746-6c24ade40077",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Spotify Auth",
+			"request": {
+				"url": "https://accounts.spotify.com/api/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic MGM2NDc4NDljMzc3NGVkMWJlMzc4OWMzNzg5MDRjM2Q6ZjY0YzM2MTFmOTAxNGFkOWJiZTlkYTRjZjFmNmMwMWU="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Spotify Search Track",
+			"request": {
+				"url": {
+					"raw": "https://api.spotify.com/v1/search?type=track&q=verano%20del%2092",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "track",
+							"equals": true
+						},
+						{
+							"key": "q",
+							"value": "verano%20del%2092",
+							"equals": true
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer BQAegj41cDHTjKdl6W3LPHBRmtvxYHVVyW7OPX7ZmPKbvCXbeuUfhNZiolQE_zJPRfbogbhqmEZFNKgb2qQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create list",
+			"request": {
+				"url": "localhost:3800/listas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"rock nacional\",\n    \"temas\": [\n        {\n        \t\"id\": \"1\",\n            \"name\": \"yo canibal\"\n        },\n        {\n        \t\"id\": \"2\",\n            \"name\": \"el amor despues del amor\"\n        }\n    ],\n    \"seguidores\": [\n        {\n            \"usuario\": \"lrodriguez\",\n            \"positivo\": true\n        }\n    ],\n    \"usuario\": \"phazan\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain tracks",
+			"request": {
+				"url": {
+					"raw": "localhost:3800/spotify?name=wellcome",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"spotify"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "wellcome",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
