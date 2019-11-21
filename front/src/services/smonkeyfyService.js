@@ -31,6 +31,17 @@ export class SmonkeyfyService{
 		const response = await futureResponse.json()
     return response.data.list
   }
+  static async getGoogleUrl() {
+    const futureResponse = await Vue.http.get('http://localhost:3800/google')
+    const response = await futureResponse.json()
+    return response.data.url
+  }
+  static async getGoogleToken(code) {
+    const futureResponse = await Vue.http.post('http://localhost:3800/google', code)
+    const response = await futureResponse.json()
+    return response.data
+  }
+  
 
 }
 export class Filter {

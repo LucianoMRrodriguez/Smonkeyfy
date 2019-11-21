@@ -13,7 +13,7 @@ services:
       - ~/.ssh/:/root/.ssh/
       - /etc/timezone:/etc/timezone
     ports:
-      - 8080:8080
+      - 8120:8080
     networks:
       - smonkeyfy-net
     working_dir: /smonkeyfy/

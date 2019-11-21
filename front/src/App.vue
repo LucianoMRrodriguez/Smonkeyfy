@@ -10,6 +10,9 @@
       </el-menu-item>
     </el-menu>
     <modal-login ref="modalLogin" :loginPromise="storeLogin" @logged-in="posLogin">
+      <template v-slot:beforeForm>
+        <el-button @click="redirectGoogle"> Login with Google </el-button>
+      </template>
     </modal-login>
     <router-view/>
   </div>
@@ -22,6 +25,7 @@ import bus from '@/utils/mixinBus'
 import events from '@/constantes/constantes'
 import { mapState, mapGetters, mapActions } from 'vuex'
 import BackButton from '@/components/buttons/BackButton'
+import { SmonkeyfyService } from "./services/smonkeyfyService";
 
 export default {
   name: 'app',
@@ -31,13 +35,17 @@ export default {
       isLoggedIn: 'auth/isLoggedIn'
     })
   },
-  created () {
+  async created () {
     this.validateToken()
       .then(value => {
         if(!value) {
           this.storeLogout()
         }
       })
+    if(this.$route.query.code) {
+      let tokens = await SmonkeyfyService.getGoogleToken({code: decodeURIComponent(this.$route.query.code)})
+      this.storeLogin({tokens})
+    }
   },
   methods: {
     showModal: function(val) {
@@ -50,6 +58,10 @@ export default {
       this.storeLogout()
       this.bus.send({event:events.logoutEventName})
       this.$router.push({ name: 'ListasReproduccion'})
+    },
+    redirectGoogle: async function() {
+      const url = await SmonkeyfyService.getGoogleUrl()
+      window.location = url
     },
     ...mapActions({
       storeLogin: 'auth/smonkeyfyLogin',

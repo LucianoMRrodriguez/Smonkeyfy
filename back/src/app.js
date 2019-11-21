@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 //<import-routes>
 const listaRouter = require('./routes/listaRouter')
 const spotifyRouter = require('./routes/spotifyRouter')
+const googleRouter = require('./routes/googleRouter')
 //</import-routes>
 const app = express();
 const server = require('http').Server(app);
@@ -25,6 +26,7 @@ app.use(function (req, res, next) {
 //<routes>
 app.use('/listas', listaRouter)
 app.use('/spotify', spotifyRouter)
+app.use('/google', googleRouter)
 //</routes>
 
 //erros

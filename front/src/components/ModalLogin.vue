@@ -1,5 +1,7 @@
 <template>
-    <el-dialog title="Login with CYS" :visible.sync="visible" @keyup.13.native="login">
+    <el-dialog title="Login" :visible.sync="visible" @keyup.13.native="login">
+        <slot name="beforeForm">
+        </slot>
         <el-alert
             v-if="showAlert"
             title="Usuario y/o password inválidos."
@@ -15,6 +17,8 @@
             <el-input type="password" v-model="form.pass" auto-complete="off"></el-input>
             </el-form-item>
         </el-form>
+        <slot name="afterForm">
+        </slot>
         <span slot="footer" class="dialog-footer">
             <el-button @click="visible = false">Cancel</el-button>
             <el-button type="primary" @click="login" :loading="logging">Login</el-button>

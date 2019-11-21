@@ -9,23 +9,23 @@
     "start": "npm install && npm run serve"
   },
   "dependencies": {
-    "element-ui": "^2.4.4",
+    "element-ui": "^2.7.2",
     "jwt-decode": "^2.2.0",
-    "socket.io-client": "^2.1.1",
-    "vue": "^2.5.16",
+    "socket.io-client": "^2.2.0",
+    "vue": "^2.6.10",
     "vue-focus": "^2.1.0",
-    "vue-infinite-loading": "^2.3.3",
+    "vue-infinite-loading": "^2.4.4",
     "vue-resource": "^1.5.1",
-    "vue-router": "^3.0.1",
-    "vuejs-logger": "1.5.2",
-    "vuex": "^3.0.1",
+    "vue-router": "^3.0.6",
+    "vuejs-logger": "1.5.3",
+    "vuex": "^3.1.0",
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.2",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.2",
-    "@vue/cli-service": "^3.0.0-rc.2",
-    "vue-template-compiler": "^2.5.16"
+    "@vue/cli-plugin-babel": "^3.6.0",
+    "@vue/cli-plugin-eslint": "^3.6.0",
+    "@vue/cli-service": "^3.6.0",
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,
